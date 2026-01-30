@@ -15,9 +15,6 @@ class Server(Base):
     owner_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     
-    # Relationships (we'll use these later)
-    # owner = relationship("User", back_populates="owned_servers")
-    
     def __repr__(self):
         return f"<Server {self.name}>"
 
