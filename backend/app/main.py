@@ -1,6 +1,11 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
+from app.core.database import engine, Base
+from app.api import auth
+
+# Create database tables
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -16,6 +21,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Include routers
+app.include_router(auth.router)
+
 @app.get("/")
 async def root():
     return {
@@ -27,5 +35,3 @@ async def root():
 @app.get("/health")
 async def health():
     return {"status": "healthy"}
-
-# We'll add more routes here as we build
