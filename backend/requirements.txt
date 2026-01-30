@@ -1,27 +1,28 @@
-# FastAPI and server
-fastapi==0.104.1
-uvicorn[standard]==0.24.0
-python-multipart==0.0.6
+# --- Core Server ---
+# installs fastapi, uvicorn, python-multipart, email-validator automatically
+fastapi[standard]>=0.115.0
 
-# Database
-sqlalchemy==2.0.23
-alembic==1.12.1
-psycopg2-binary==2.9.9
+# --- Database ---
+sqlalchemy>=2.0.36
+alembic>=1.14.0
+# psycopg2 is fine, but 'psycopg' (v3) is the modern standard for async/sync
+psycopg2-binary>=2.9.10 
 
-# Redis
-redis==5.0.1
+# --- Redis ---
+redis>=5.2.0
 
-# Authentication
-python-jose[cryptography]==3.3.0
+# --- Authentication ---
+# 'python-jose' is abandoned. 'pyjwt' is the modern standard.
+pyjwt[crypto]>=2.10.0
 passlib[bcrypt]==1.7.4
-python-dotenv==1.0.0
+python-jose[cryptography]
+bcrypt==3.2.2
+# --- Configuration ---
+python-dotenv>=1.0.1
+pydantic-settings>=2.7.0
 
-# WebSocket
-websockets==12.0
+# --- WebSocket ---
+websockets>=14.0
 
-# File storage
-minio==7.2.0
-
-# Utilities
-pydantic==2.5.0
-pydantic-settings==2.1.0
+# --- File Storage ---
+minio>=7.2.12

@@ -76,7 +76,7 @@ async def login(login_data: UserLogin, db: Session = Depends(get_db)):
     
     return TokenResponse(
         access_token=access_token,
-        user=UserResponse.from_orm(new_user)
+        user=UserResponse.from_orm(user)
     )
 
 # Dependency to get current user from token
